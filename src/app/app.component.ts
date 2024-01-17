@@ -33,7 +33,10 @@ export class AppComponent {
     } else {
       this.foodSelected[foodIndex].price += food.price;
     }
+    this.showAlert();
+  }
 
+  showAlert() {
     this.alertOpacity = 1;
     let interval = setInterval(() => {
       this.alertOpacity -= 0.1;
@@ -46,8 +49,13 @@ export class AppComponent {
 
   addNewFood({ name, price, description, imgUrl }) {
     // reset form
+    if (!name || !price || !description || !imgUrl) {
+      return alert('Please fill all fields');
+    }
+
+    this.foods = [{ name, price, description, imgUrl }, ...this.foods];
     this.foodFormRef.nativeElement.reset();
-    // this.foods = [{ name, price, description, imgUrl }, ...this.foods];
+    this.showAlert();
   }
 
   foods: {
