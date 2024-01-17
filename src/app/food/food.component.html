@@ -1,1 +1,19 @@
-<p>food works!</p>
+<div class="card" style="width: 18rem">
+  <img
+    [src]="food.imgUrl"
+    class="card-img-top"
+    [alt]="food.name"
+    style="height: 250px"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ food.name }}</h5>
+    <p class="card-text">{{ food.description.substring(0, 120) }}...</p>
+    <p class="card-text">
+      {{ quantity }}
+    </p>
+    <p class="card-text">${{ food.price }}</p>
+    <button class="btn btn-success" (click)="onIncrement()">+</button>
+    <button class="btn btn-danger" (click)="onDecrement()">-</button>
+    <button class="btn btn-warning">Add to cart</button>
+  </div>
+</div>
