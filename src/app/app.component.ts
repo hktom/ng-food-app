@@ -7,6 +7,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-food-app';
+  foodSelected: {
+    name: string;
+    price: number;
+    description: string;
+    imgUrl: string;
+  }[] = [];
+
+  foodSelectedHandler(food?: {
+    name: string;
+    price: number;
+    description: string;
+    imgUrl: string;
+  }) {
+    let foodIndex = this.foodSelected.findIndex(
+      (item) => item?.name === food?.name
+    );
+
+    if (foodIndex === -1) {
+      this.foodSelected.push(food);
+    } else {
+      this.foodSelected[foodIndex].price += food.price;
+    }
+  }
+
   foods: {
     name: string;
     price: number;

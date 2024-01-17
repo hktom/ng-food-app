@@ -1,1 +1,12 @@
-<p>cart works!</p>
+<ol class="list-group list-group-numbered">
+  <li
+    class="list-group-item d-flex justify-content-between align-items-start"
+    *ngFor="let food of foodSelected; let index = index"
+  >
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{ food.name }}</div>
+      quantity: {{ food.quantity }}
+    </div>
+    <span class="badge bg-success rounded-pill"> ${{ food.price }}</span>
+  </li>
+</ol>
