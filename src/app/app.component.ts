@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,10 @@ export class AppComponent {
     description: string;
     imgUrl: string;
   }[] = [];
+
+  @ViewChild('foodFormRef') foodFormRef: any;
+
+  alertOpacity: number = 0;
 
   foodSelectedHandler(food?: {
     name: string;
@@ -29,6 +33,21 @@ export class AppComponent {
     } else {
       this.foodSelected[foodIndex].price += food.price;
     }
+
+    this.alertOpacity = 1;
+    let interval = setInterval(() => {
+      this.alertOpacity -= 0.1;
+      if (this.alertOpacity <= 0) {
+        this.alertOpacity = 0;
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+
+  addNewFood({ name, price, description, imgUrl }) {
+    // reset form
+    this.foodFormRef.nativeElement.reset();
+    // this.foods = [{ name, price, description, imgUrl }, ...this.foods];
   }
 
   foods: {
